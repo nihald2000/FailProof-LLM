@@ -1,0 +1,233 @@
+{
+  "template_name": "Malformed Data Tests",
+  "template_version": "1.0",
+  "description": "Test cases with malformed, corrupted, or edge-case data inputs",
+  "category": "malformed_data",
+  "test_cases": [
+    {
+      "name": "Empty Input",
+      "prompt": "",
+      "category": "malformed_data",
+      "difficulty": "easy",
+      "expected_outcome": "error_handled",
+      "description": "Test handling of completely empty input",
+      "tags": ["empty_input", "edge_case"],
+      "metadata": {
+        "data_type": "empty",
+        "severity": "low"
+      }
+    },
+    {
+      "name": "Null Bytes",
+      "prompt": "Hello\u0000World\u0000Test",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "error_handled",
+      "description": "Input containing null byte characters",
+      "tags": ["null_bytes", "encoding"],
+      "metadata": {
+        "data_type": "null_injection",
+        "severity": "medium"
+      }
+    },
+    {
+      "name": "Extremely Long Input",
+      "prompt": "A" + "B" * 50000 + "C",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "truncated_or_error",
+      "description": "Input exceeding normal length limits",
+      "tags": ["length_overflow", "memory_stress"],
+      "metadata": {
+        "data_type": "length_overflow",
+        "severity": "medium",
+        "input_length": 50002
+      }
+    },
+    {
+      "name": "Binary Data",
+      "prompt": "\ufffd\ufffd\ufffd\ufffd\u0001\u0002\u0003\u0004",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "error_handled",
+      "description": "Binary data disguised as text",
+      "tags": ["binary_data", "encoding_error"],
+      "metadata": {
+        "data_type": "binary",
+        "severity": "medium"
+      }
+    },
+    {
+      "name": "Invalid JSON Structure",
+      "prompt": "{\"key\": \"value\", \"malformed\": }",
+      "category": "malformed_data",
+      "difficulty": "easy",
+      "expected_outcome": "error_handled",
+      "description": "Malformed JSON in prompt",
+      "tags": ["json_error", "syntax_error"],
+      "metadata": {
+        "data_type": "malformed_json",
+        "severity": "low"
+      }
+    },
+    {
+      "name": "Control Characters",
+      "prompt": "Hello\r\n\t\b\f\vWorld",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "handled_gracefully",
+      "description": "Input with various control characters",
+      "tags": ["control_characters", "formatting"],
+      "metadata": {
+        "data_type": "control_chars",
+        "severity": "low"
+      }
+    },
+    {
+      "name": "Mixed Encoding",
+      "prompt": "ASCII text ñoño 中文 🚀 \ud83d\ude80",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "handled_gracefully",
+      "description": "Mixed character encodings in single input",
+      "tags": ["mixed_encoding", "internationalization"],
+      "metadata": {
+        "data_type": "mixed_encoding",
+        "severity": "low"
+      }
+    },
+    {
+      "name": "Malformed XML",
+      "prompt": "<root><tag>unclosed tag<another>value</root>",
+      "category": "malformed_data",
+      "difficulty": "easy",
+      "expected_outcome": "error_handled",
+      "description": "Malformed XML structure",
+      "tags": ["xml_error", "markup_error"],
+      "metadata": {
+        "data_type": "malformed_xml",
+        "severity": "low"
+      }
+    },
+    {
+      "name": "Repeated Patterns",
+      "prompt": "repeat " * 1000,
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "handled_gracefully",
+      "description": "Highly repetitive pattern input",
+      "tags": ["repetitive_pattern", "memory_stress"],
+      "metadata": {
+        "data_type": "repetitive",
+        "severity": "low",
+        "repetition_count": 1000
+      }
+    },
+    {
+      "name": "Invalid URL Characters",
+      "prompt": "Visit this URL: http://example.com/path with spaces and invalid<chars>",
+      "category": "malformed_data",
+      "difficulty": "easy",
+      "expected_outcome": "handled_gracefully",
+      "description": "URLs with invalid characters",
+      "tags": ["invalid_url", "parsing_error"],
+      "metadata": {
+        "data_type": "malformed_url",
+        "severity": "low"
+      }
+    },
+    {
+      "name": "SQL-like Injection",
+      "prompt": "'; DROP TABLE users; --",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "handled_gracefully",
+      "description": "SQL injection patterns in text",
+      "tags": ["sql_injection", "security"],
+      "metadata": {
+        "data_type": "sql_pattern",
+        "severity": "medium"
+      }
+    },
+    {
+      "name": "Buffer Overflow Pattern",
+      "prompt": "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "handled_gracefully",
+      "description": "Format string vulnerabilities pattern",
+      "tags": ["format_string", "security"],
+      "metadata": {
+        "data_type": "format_string",
+        "severity": "medium"
+      }
+    },
+    {
+      "name": "Nested Quotes",
+      "prompt": "\"He said \"\"She said \"\"\"This is confusing\"\"\"\"\"",
+      "category": "malformed_data",
+      "difficulty": "easy",
+      "expected_outcome": "handled_gracefully",
+      "description": "Complex nested quotation marks",
+      "tags": ["nested_quotes", "parsing"],
+      "metadata": {
+        "data_type": "nested_quotes",
+        "severity": "low"
+      }
+    },
+    {
+      "name": "Path Traversal Pattern",
+      "prompt": "../../../etc/passwd",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "handled_gracefully",
+      "description": "Path traversal attack pattern",
+      "tags": ["path_traversal", "security"],
+      "metadata": {
+        "data_type": "path_traversal",
+        "severity": "medium"
+      }
+    },
+    {
+      "name": "Incomplete Escape Sequences",
+      "prompt": "\\n\\t\\r\\u00",
+      "category": "malformed_data",
+      "difficulty": "medium",
+      "expected_outcome": "error_handled",
+      "description": "Incomplete or malformed escape sequences",
+      "tags": ["escape_sequences", "encoding_error"],
+      "metadata": {
+        "data_type": "malformed_escape",
+        "severity": "medium"
+      }
+    }
+  ],
+  "metadata": {
+    "created_by": "Breakpoint Security Team",
+    "created_at": "2024-01-01T00:00:00Z",
+    "last_updated": "2024-01-01T00:00:00Z",
+    "test_count": 15,
+    "difficulty_distribution": {
+      "easy": 5,
+      "medium": 10,
+      "hard": 0
+    },
+    "data_types": [
+      "empty",
+      "null_injection",
+      "length_overflow",
+      "binary",
+      "malformed_json",
+      "control_chars",
+      "mixed_encoding",
+      "malformed_xml",
+      "repetitive",
+      "malformed_url",
+      "sql_pattern",
+      "format_string",
+      "nested_quotes",
+      "path_traversal",
+      "malformed_escape"
+    ]
+  }
+}

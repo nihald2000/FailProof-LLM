@@ -1,0 +1,92 @@
+# Breakpoint LLM Stress Testing Platform - Backend Dependencies
+
+# FastAPI and web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.0.3
+
+# Async HTTP client and networking
+aiohttp==3.9.1
+httpx==0.25.2
+
+# LLM API clients
+openai==1.3.7
+anthropic==0.7.7
+
+# Database and ORM
+sqlalchemy==2.0.23
+alembic==1.13.1
+asyncpg==0.29.0  # PostgreSQL async driver
+aiosqlite==0.19.0  # SQLite async driver
+
+# Caching and Redis
+redis==5.0.1
+aioredis==2.0.1
+
+# Authentication and security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Data processing and validation
+pandas==2.1.4
+numpy==1.25.2
+jsonschema==4.20.0
+
+# File handling
+openpyxl==3.1.2  # Excel files
+python-docx==1.1.0  # Word documents
+PyPDF2==3.0.1  # PDF files
+
+# Monitoring and logging
+structlog==23.2.0
+prometheus-client==0.19.0
+psutil==5.9.6
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+httpx==0.25.2  # For testing HTTP clients
+
+# Development tools
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Background tasks
+celery==5.3.4
+flower==2.0.1  # Celery monitoring
+
+# Configuration
+python-dotenv==1.0.0
+click==8.1.7
+python-jose[cryptography]==3.3.0  # JWT tokens
+passlib[bcrypt]==1.7.4  # Password hashing
+
+# Date and time handling
+python-dateutil==2.8.2
+
+# Utilities
+tqdm==4.66.1  # Progress bars
+rich==13.7.0  # Rich terminal output
+typer==0.9.0  # CLI tool
+
+# Deployment
+gunicorn==21.2.0
+supervisor==4.2.5
+
+# Optional: Machine Learning for advanced analysis
+scikit-learn==1.3.2
+transformers==4.36.2
+torch==2.1.1
+
+# Optional: Advanced NLP
+spacy==3.7.2
+nltk==3.8.1
+
+# Optional: Visualization
+matplotlib==3.8.2
+plotly==5.17.0
