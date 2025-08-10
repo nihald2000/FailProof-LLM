@@ -436,6 +436,82 @@ app.include_router(
 )
 
 
+# Add demo endpoints for quick testing (without authentication)
+@app.post("/api/v1/tests/execute")
+async def execute_demo_test(request: dict):
+    """Demo test execution endpoint without authentication."""
+    try:
+        return {
+            "session_id": f"demo-{uuid.uuid4()}",
+            "status": "completed",
+            "result": {
+                "model_response": f"Demo response to: {request.get('prompt', 'test prompt')}",
+                "analysis": {
+                    "classification": "safe" if "safe" in request.get('prompt', '').lower() else "potentially_harmful",
+                    "severity": "low",
+                    "confidence_score": 0.85,
+                    "vulnerabilities": [] if "safe" in request.get('prompt', '').lower() else ["potential_prompt_injection"],
+                    "explanation": "This is a demo analysis. The actual system would perform comprehensive security analysis."
+                }
+            }
+        }
+    except Exception as e:
+        logger.error(f"Demo test execution failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/v1/models/configure")
+async def configure_models_demo(request: dict):
+    """Demo model configuration endpoint without authentication."""
+    return {
+        "status": "success", 
+        "message": "Demo configuration saved successfully",
+        "configured_providers": list(request.keys())
+    }
+
+@app.get("/api/v1/models/available")
+async def get_available_models_demo():
+    """Demo available models endpoint without authentication."""
+    return {
+        "models": [
+            {
+                "id": "gpt-3.5-turbo",
+                "name": "GPT-3.5 Turbo",
+                "provider": "openai",
+                "description": "OpenAI GPT-3.5 Turbo model"
+            },
+            {
+                "id": "gpt-4",
+                "name": "GPT-4",
+                "provider": "openai", 
+                "description": "OpenAI GPT-4 model"
+            },
+            {
+                "id": "claude-3-sonnet",
+                "name": "Claude 3 Sonnet",
+                "provider": "anthropic",
+                "description": "Anthropic Claude 3 Sonnet model"
+            }
+        ]
+    }
+
+@app.get("/api/v1/status")
+async def api_status():
+    """API status endpoint."""
+    return {
+        "message": "✅ FailProof LLM Platform - WORKING!",
+        "status": "operational",
+        "platform": "Modal", 
+        "timestamp": "2025-08-10",
+        "available_endpoints": [
+            "/",
+            "/health",
+            "/api/v1/status",
+            "/api/v1/tests/execute",
+            "/api/v1/models/configure",
+            "/api/v1/models/available"
+        ]
+    }
+
 # Root endpoint
 @app.get(
     "/",
